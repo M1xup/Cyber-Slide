@@ -7,12 +7,27 @@ using Random = UnityEngine.Random;
 
 public class ChangeEnvironment : MonoBehaviour
 {
-    [SerializeField] private List<string> Environments = new List<string>() {"cold night", "deep dusk"};
+    [Header("Environments")]
+    private static string _lastEnvironment;
+    public string ActiveEnvironment;
+    private List<string> Environments = new List<string>() {"cold night", "deep dusk", "epic blue sunset", 
+        "epic glorious pink", "night moon burst", "space another planet" };
+    
+    [Header("Skyboxes")]
     [SerializeField] private Material _coldNightSkybox;
     [SerializeField] private Material _deepDuskSkybox;
+    [SerializeField] private Material _epicBlueSunsetSkybox;
+    [SerializeField] private Material _epicGloriousPinkSkybox;
+    [SerializeField] private Material _nightMoonBurstSkybox;
+    [SerializeField] private Material _spaceAnotherPlanetSkybox;
+    
+    [Header("LightingSettings")]
     [SerializeField] private LightingSettings _coldNightSettings;
     [SerializeField] private LightingSettings _deepDuskSettings;
-    private static string _lastEnvironment;
+    [SerializeField] private LightingSettings _epicBlueSunsetSettings;
+    [SerializeField] private LightingSettings _epicGloriousPinkSettings;
+    [SerializeField] private LightingSettings _nightMoonBurstSettings;
+    [SerializeField] private LightingSettings _spaceAnotherPlanetSettings;
 
     private void Awake()
     {
@@ -22,18 +37,37 @@ public class ChangeEnvironment : MonoBehaviour
             _lastEnvironment = Environments[Random.Range(0, Environments.Count)];
         }
         
-        if (_lastEnvironment == Environments[0])
+        Change();
+    }
+
+    private void Change()
+    {
+        Environments.Remove(_lastEnvironment);
+        ActiveEnvironment = Environments[Random.Range(0, Environments.Count)];
+
+        switch (ActiveEnvironment)
         {
-            Environments.RemoveAt(0);
-            DeepDusk();
-            _lastEnvironment = Environments[1];
+            case  "cold night":
+                ColdNight();
+                break;
+            case "deep dusk":
+                DeepDusk();
+                break;
+            case "epic blue sunset":
+                EpicBlueSunset();
+                break;
+            case "epic glorious pink":
+                EpicGloriousPink();
+                break;
+            case "night moon burst":
+                NightMoonBurst();
+                break;
+            case "space another planet":
+                SpaceAnotherPlanet();
+                break;
         }
-        else if (_lastEnvironment == Environments[1])
-        {
-            Environments.RemoveAt(1);
-            ColdNight();
-            _lastEnvironment = Environments[0];
-        }
+        
+        _lastEnvironment = ActiveEnvironment;
     }
 
     private void ColdNight()
@@ -46,5 +80,29 @@ public class ChangeEnvironment : MonoBehaviour
     {
         RenderSettings.skybox = _deepDuskSkybox;
         Lightmapping.lightingSettings = _deepDuskSettings;
+    }
+    
+    private void EpicBlueSunset()
+    {
+        RenderSettings.skybox = _epicBlueSunsetSkybox;
+        Lightmapping.lightingSettings = _epicBlueSunsetSettings;
+    }
+    
+    private void EpicGloriousPink()
+    {
+        RenderSettings.skybox = _epicGloriousPinkSkybox;
+        Lightmapping.lightingSettings = _epicGloriousPinkSettings;
+    }
+    
+    private void NightMoonBurst()
+    {
+        RenderSettings.skybox = _nightMoonBurstSkybox;
+        Lightmapping.lightingSettings = _nightMoonBurstSettings;
+    }
+    
+    private void SpaceAnotherPlanet()
+    {
+        RenderSettings.skybox = _spaceAnotherPlanetSkybox;
+        Lightmapping.lightingSettings = _spaceAnotherPlanetSettings;
     }
 }
