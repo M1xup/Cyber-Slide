@@ -28,6 +28,13 @@ public class ChangeEnvironment : MonoBehaviour
     [SerializeField] private LightingSettings _epicGloriousPinkSettings;
     [SerializeField] private LightingSettings _nightMoonBurstSettings;
     [SerializeField] private LightingSettings _spaceAnotherPlanetSettings;
+    
+    [Header("AudioEffects")]
+    [SerializeField] private AudioSource _rain;
+    [SerializeField] private AudioSource _day;
+    [SerializeField] private AudioSource _thaw;
+    [SerializeField] private AudioSource _meteorRain;
+    [SerializeField] private AudioSource _spaceAnotherPlanet;
 
     private void Awake()
     {
@@ -38,6 +45,7 @@ public class ChangeEnvironment : MonoBehaviour
         }
         
         Change();
+        ChangeMusic();
     }
 
     private void Change()
@@ -73,36 +81,96 @@ public class ChangeEnvironment : MonoBehaviour
     private void ColdNight()
     {
         RenderSettings.skybox = _coldNightSkybox;
-        Lightmapping.lightingSettings = _coldNightSettings;
+        //Lightmapping.lightingSettings = _coldNightSettings;
     }
     
     private void DeepDusk()
     {
         RenderSettings.skybox = _deepDuskSkybox;
-        Lightmapping.lightingSettings = _deepDuskSettings;
+        //Lightmapping.lightingSettings = _deepDuskSettings;
     }
     
     private void EpicBlueSunset()
     {
         RenderSettings.skybox = _epicBlueSunsetSkybox;
-        Lightmapping.lightingSettings = _epicBlueSunsetSettings;
+        //Lightmapping.lightingSettings = _epicBlueSunsetSettings;
     }
     
     private void EpicGloriousPink()
     {
         RenderSettings.skybox = _epicGloriousPinkSkybox;
-        Lightmapping.lightingSettings = _epicGloriousPinkSettings;
+        //Lightmapping.lightingSettings = _epicGloriousPinkSettings;
     }
     
     private void NightMoonBurst()
     {
         RenderSettings.skybox = _nightMoonBurstSkybox;
-        Lightmapping.lightingSettings = _nightMoonBurstSettings;
+        //Lightmapping.lightingSettings = _nightMoonBurstSettings;
     }
     
     private void SpaceAnotherPlanet()
     {
         RenderSettings.skybox = _spaceAnotherPlanetSkybox;
-        Lightmapping.lightingSettings = _spaceAnotherPlanetSettings;
+        //Lightmapping.lightingSettings = _spaceAnotherPlanetSettings;
+    }
+
+    public void ChangeMusic()
+    {
+        switch (ActiveEnvironment)
+        {
+            case "cold night":
+                _rain.Play();
+                
+                _day.Stop();
+                _thaw.Stop();
+                _spaceAnotherPlanet.Stop();
+                _meteorRain.Stop();
+                break;
+                
+            case "deep dusk":
+                _day.Play();
+                
+                _rain.Stop();
+                _thaw.Stop();
+                _spaceAnotherPlanet.Stop();
+                _meteorRain.Stop();
+                break;
+                
+            case "epic blue sunset":
+                _thaw.Play();
+                
+                _rain.Stop();
+                _day.Stop();
+                _spaceAnotherPlanet.Stop();
+                _meteorRain.Stop();
+                break;
+                
+            case "epic glorious pink":
+                _meteorRain.Play();
+                
+                _rain.Stop();
+                _day.Stop();
+                _thaw.Stop();
+                _spaceAnotherPlanet.Stop();
+                break;
+                
+            case "night moon burst":
+                _day.Play();
+                
+                _rain.Stop();
+                _thaw.Stop();
+                _spaceAnotherPlanet.Stop();
+                _meteorRain.Stop();
+                break;
+                
+            case "space another planet":
+                _spaceAnotherPlanet.Play();
+                
+                _rain.Stop();
+                _day.Stop();
+                _thaw.Stop();
+                _meteorRain.Stop();
+                break;
+        }
     }
 }

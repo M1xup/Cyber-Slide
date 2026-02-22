@@ -19,6 +19,10 @@ TagManager:
   - Blade
   - Floor
   - RotationBladeSound
+  - Snow
+  - Rain
+  - Blizzard
+  - MeteorRain
   layers:
   - Default
   - TransparentFX

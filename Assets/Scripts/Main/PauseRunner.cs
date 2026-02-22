@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class PauseRunner : MonoBehaviour
 {
-    [Header("Pause")]
+    [Header("References")]
     [SerializeField] private CameraShake _camShake;
     [SerializeField] private DualHooks _dh;
     [SerializeField] private EndRunnerGame _endGame;
     [SerializeField] private LearningMenu _learningMenu;
     [SerializeField] private Speedometer _speedometer;
     [SerializeField] private DistanceCounter _disCounter;
+    [SerializeField] private ChangeEnvironment _changeEnvironment;
+    
+    [Header("Pause")]
     [SerializeField] private GameObject _hudUI;
     [SerializeField] private GameObject _pauseUI;
     [SerializeField] private TMP_Text _speedText;
@@ -26,6 +29,11 @@ public class PauseRunner : MonoBehaviour
     [SerializeField] private AudioSource _nightCity;
     
     [SerializeField] private AudioSource _rain;
+    [SerializeField] private AudioSource _day;
+    [SerializeField] private AudioSource _thaw;
+    [SerializeField] private AudioSource _meteorRain;
+    [SerializeField] private AudioSource _spaceAnotherPlanet;
+    
     public List<AudioSource> _rotationBlades;
     private GameObject[] _blades;
 
@@ -75,6 +83,11 @@ public class PauseRunner : MonoBehaviour
                     }
                     
                     _rain.Stop();
+                    _day.Stop();
+                    _thaw.Stop();
+                    _meteorRain.Stop();
+                    _spaceAnotherPlanet.Stop();
+                    
                     _nightCity.Play();
                     
                     Cursor.lockState = CursorLockMode.Confined;
@@ -100,9 +113,10 @@ public class PauseRunner : MonoBehaviour
             rotationBlade.Play();
         }
         _rotationBlades.Clear();
+
+        _changeEnvironment.ChangeMusic();
         
         _nightCity.Stop();
-        _rain.Play();
 
         _hudUI.SetActive(true);
         _pauseUI.SetActive(false);

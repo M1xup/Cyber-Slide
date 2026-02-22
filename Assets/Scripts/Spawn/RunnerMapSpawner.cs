@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class RunnerMapSpawner : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private ChangeEnvironment _changeEnvironment;
+    
     [Header("RunningMap")]
     [SerializeField] private List<GameObject> _runnerMapPrefabs;
     public GameObject RunnerMap;
@@ -13,7 +16,12 @@ public class RunnerMapSpawner : MonoBehaviour
     public GameObject _mapClone;
     private int _numberOfDeletionsMap;
     private GameObject _mapClones;
-
+    
+    [Header("Environment")]
+    private GameObject[] _blizzard;
+    private GameObject[] _rain;
+    private GameObject[] _snow;
+    private GameObject[] _meteorRain;
     private void Awake()
     {
         _mapClones = new("MapClones");
@@ -23,6 +31,8 @@ public class RunnerMapSpawner : MonoBehaviour
     {
         _lastRunnerMapPosition = RunnerMap.transform.position;
         _mapClone = RunnerMap;
+        
+        ChangeEnvironment();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,6 +55,8 @@ public class RunnerMapSpawner : MonoBehaviour
             _mapClone.transform.parent = _mapClones.transform;
             _lastRunnerMapPosition = _mapClone.transform.position;
 
+            ChangeEnvironment();
+
             Destroy(other.gameObject);
         }
 
@@ -61,5 +73,102 @@ public class RunnerMapSpawner : MonoBehaviour
             }
             Destroy(other.gameObject);
         }
+    }
+
+    private void ChangeEnvironment()
+    {
+        _blizzard = GameObject.FindGameObjectsWithTag("Blizzard");
+        _rain = GameObject.FindGameObjectsWithTag("Rain");
+        _snow = GameObject.FindGameObjectsWithTag("Snow");
+        _meteorRain = GameObject.FindGameObjectsWithTag("MeteorRain");
+        
+        switch (_changeEnvironment.ActiveEnvironment)
+        {
+            case "cold night":
+                foreach (var snow in _snow)
+                {
+                    snow.SetActive(false);
+                }
+                
+                foreach (var meteorRain in _meteorRain)
+                {
+                    meteorRain.SetActive(false);
+                }
+                break;
+                
+            case "deep dusk":
+                foreach (var rain in _rain)
+                {
+                    rain.SetActive(false);
+                }
+                
+                foreach (var meteorRain in _meteorRain)
+                {
+                    meteorRain.SetActive(false);
+                }
+                break;
+                
+            case "epic blue sunset":
+                foreach (var rain in _rain)
+                {
+                    rain.SetActive(false);
+                }
+                
+                foreach (var meteorRain in _meteorRain)
+                {
+                    meteorRain.SetActive(false);
+                }
+                break;
+                
+            case "epic glorious pink":
+                foreach (var rain in _rain)
+                {
+                    rain.SetActive(false);
+                }
+                
+                foreach (var snow in _snow)
+                {
+                    snow.SetActive(false);
+                }
+                break;
+                
+            case "night moon burst":
+                foreach (var blizzard in _blizzard)
+                {
+                    blizzard.SetActive(false);
+                }
+                
+                foreach (var rain in _rain)
+                {
+                    rain.SetActive(false);
+                }
+               
+                foreach (var meteorRain in _meteorRain)
+                {
+                    meteorRain.SetActive(false);
+                }
+                break;
+                
+            case "space another planet":
+                foreach (var rain in _rain)
+                {
+                    rain.SetActive(false);
+                }
+                
+                foreach (var snow in _snow)
+                {
+                    snow.SetActive(false);
+                }
+                
+                foreach (var meteorRain in _meteorRain)
+                {
+                    meteorRain.SetActive(false);
+                }
+                break;
+        }
+        _blizzard = null;
+        _rain = null;
+        _snow = null;
+        _meteorRain = null;
     }
 }

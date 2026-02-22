@@ -33,6 +33,11 @@ public class EndRunnerGame : MonoBehaviour
     [SerializeField] private AudioSource _nightCity;
     
     [SerializeField] private AudioSource _rain;
+    [SerializeField] private AudioSource _day;
+    [SerializeField] private AudioSource _thaw;
+    [SerializeField] private AudioSource _meteorRain;
+    [SerializeField] private AudioSource _spaceAnotherPlanet;
+    
     public List<AudioSource> _rotationBlades;
     private GameObject[] _blades;
     
@@ -120,6 +125,11 @@ public class EndRunnerGame : MonoBehaviour
         }
         
         _rain.Stop();
+        _day.Stop();
+        _thaw.Stop();
+        _meteorRain.Stop();
+        _spaceAnotherPlanet.Stop();
+        
         _nightCity.Play();
         
         _endGameUI.SetActive(true);
