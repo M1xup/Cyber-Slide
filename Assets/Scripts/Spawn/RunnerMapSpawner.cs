@@ -6,6 +6,7 @@ public class RunnerMapSpawner : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private ChangeEnvironment _changeEnvironment;
+    [SerializeField] private GpuInctancingEnabler _gpuInctancing;
     
     [Header("RunningMap")]
     [SerializeField] private List<GameObject> _runnerMapPrefabs;
@@ -22,6 +23,11 @@ public class RunnerMapSpawner : MonoBehaviour
     private GameObject[] _rain;
     private GameObject[] _snow;
     private GameObject[] _meteorRain;
+
+    [Header("Children")] 
+    private GameObject _road;
+    private GameObject _path;
+    
     private void Awake()
     {
         _mapClones = new("MapClones");
@@ -55,6 +61,7 @@ public class RunnerMapSpawner : MonoBehaviour
             _mapClone.transform.parent = _mapClones.transform;
             _lastRunnerMapPosition = _mapClone.transform.position;
 
+            GpuInctancing(_randomPrafab);
             ChangeEnvironment();
 
             Destroy(other.gameObject);
@@ -170,5 +177,37 @@ public class RunnerMapSpawner : MonoBehaviour
         _rain = null;
         _snow = null;
         _meteorRain = null;
+    }
+
+    private void GpuInctancing(int _randomPrafab)
+    {
+        if (_runnerMapPrefabs[_randomPrafab].name != "RunnerMapWithBuildings")
+        {
+            _road = _mapClone.transform.GetChild(0).gameObject;
+            _path = _mapClone.transform.GetChild(1).gameObject;
+
+            foreach (var gpuInctancing in _road.GetComponentsInChildren<GpuInctancingEnabler>())
+            {
+                _gpuInctancing = gpuInctancing;
+                _gpuInctancing.GpuInctancingEnable();
+            }
+            
+            foreach (var gpuInctancing in _path.GetComponentsInChildren<GpuInctancingEnabler>())
+            {
+                _gpuInctancing = gpuInctancing;
+                _gpuInctancing.GpuInctancingEnable();
+            }
+        }
+        
+        else if (_runnerMapPrefabs[_randomPrafab].name == "RunnerMapWithBuildings")
+        {
+            _path = _mapClone.transform.GetChild(0).gameObject;
+            
+            foreach (var gpuInctancing in _path.GetComponentsInChildren<GpuInctancingEnabler>())
+            {
+                _gpuInctancing = gpuInctancing;
+                _gpuInctancing.GpuInctancingEnable();
+            }
+        }
     }
 }

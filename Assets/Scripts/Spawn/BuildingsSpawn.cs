@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class BuildingsSpawn : MonoBehaviour
 {
+    [SerializeField] private GpuInctancingEnabler _gpuInctancing;
     [SerializeField] private List<GameObject> _buildingsPrefabs;
     [SerializeField] private List<Transform> _buildingSpawnPoints;
     [SerializeField] private float _delayTime = 0.1f;
@@ -94,6 +95,9 @@ public class BuildingsSpawn : MonoBehaviour
                 
                 _building = Instantiate(_buildingsPrefabs[_randomPrafab], point.position, _buildingRotation);
                 _building.name = "Building";
+
+                _gpuInctancing = _building.GetComponent<GpuInctancingEnabler>();
+                _gpuInctancing.GpuInctancingEnable();
 
                 if (_numberOfDeletions == 1)
                 {

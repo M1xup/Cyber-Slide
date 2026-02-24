@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4557314571804222}
   - component: {fileID: 33557143610432750}
   - component: {fileID: 23361185394861340}
-  - component: {fileID: 7153183949179400414}
+  - component: {fileID: 5986538514391932109}
+  - component: {fileID: 2735573608086671252}
   m_Layer: 11
   m_Name: shop 4
   m_TagString: Untagged
@@ -89,9 +90,10 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7153183949179400414
-MeshCollider:
+--- !u!65 &5986538514391932109
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -108,7 +110,18 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: f142895cc3f9c874483f91cf8888aeb8, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.27687767, y: 0.25007838, z: 0.28172243}
+  m_Center: {x: -0.014732556, y: 0.12446935, z: 0.0012543679}
+--- !u!114 &2735573608086671252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049458588623174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64740eb882d5bce4980fb16448506db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GpuInctancingEnabler

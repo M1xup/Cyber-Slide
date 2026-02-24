@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23579068362605768}
   - component: {fileID: 136400284631174034}
   - component: {fileID: 6282384060745923951}
+  - component: {fileID: -6563916797552032239}
   m_Layer: 11
   m_Name: street lamp 2
   m_TagString: Untagged
@@ -92,6 +93,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &136400284631174034
 CapsuleCollider:
@@ -138,6 +140,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 03769b18b7297fc46a6b2f6f443db973, type: 3}
+--- !u!114 &-6563916797552032239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783211003197500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64740eb882d5bce4980fb16448506db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GpuInctancingEnabler
 --- !u!1 &1398247953222185366
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,14 +193,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1398247953222185366}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 12
   m_Type: 0
   m_Color: {r: 1, g: 0.7609518, b: 0.6179246, a: 1}
   m_Intensity: 80
   m_Range: 15
   m_SpotAngle: 121.822296
   m_InnerSpotAngle: 79.979675
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -306,14 +320,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5123788009283167925}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 12
   m_Type: 0
   m_Color: {r: 1, g: 0.7609518, b: 0.6179246, a: 1}
   m_Intensity: 80
   m_Range: 15
   m_SpotAngle: 121.822296
   m_InnerSpotAngle: 79.979675
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1

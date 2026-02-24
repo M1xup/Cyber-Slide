@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33622217828164442}
   - component: {fileID: 23585881791399992}
   - component: {fileID: 7556953436493907270}
+  - component: {fileID: 6798685224602367408}
   m_Layer: 0
   m_Name: road 6
   m_TagString: Untagged
@@ -89,6 +90,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &7556953436493907270
 BoxCollider:
@@ -111,3 +113,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 25.000004, y: 0.18420231, z: 30.000002}
   m_Center: {x: 0.00000047683716, y: -0.091899395, z: 0.0000009536743}
+--- !u!114 &6798685224602367408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303039234618494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64740eb882d5bce4980fb16448506db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GpuInctancingEnabler
